@@ -71,3 +71,20 @@ Secret cần khai báo trong Settings → Secrets and variables → Actions:
 | `VM_SSH_KEY` | private key dành riêng cho GitHub Actions |
 
 `.env` và `secrets/gcp-sa.json` không bao giờ lên GitHub, tạo tay trên VM một lần.
+
+
+## Date range validation
+
+`validation.py` provides `is_valid_date_range(start_date, end_date)`.
+
+- Input: two date strings in `YYYY-MM-DD` format.
+- Output: `True` if `end_date` is on or after `start_date`, otherwise `False`.
+- Invalid calendar dates raise `ValueError`.
+
+Quick check:
+
+```bash
+python3 -c 'from validation import is_valid_date_range; print(is_valid_date_range("2026-10-08", "2026-10-10")); print(is_valid_date_range("2026-10-10", "2026-10-08"))'
+```
+
+Expected output: `True` on the first line and `False` on the second.
